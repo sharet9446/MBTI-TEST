@@ -1,12 +1,24 @@
 import { useState } from "react";
 
 const AuthForm = ({ mode, onSubmit }) => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [formData, setFormData] = useState({
+    id: "",
+    password: "",
+    nickname: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(formData);
+  };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label
           htmlFor="id"
@@ -16,9 +28,10 @@ const AuthForm = ({ mode, onSubmit }) => {
         </label>
         <input
           id="id"
+          name="id"
           type="text"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
+          value={formData.id}
+          onChange={handleChange}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
           required
         />
@@ -32,9 +45,10 @@ const AuthForm = ({ mode, onSubmit }) => {
         </label>
         <input
           id="password"
+          name="password"
           type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleChange}
           className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
           required
         />
@@ -49,9 +63,10 @@ const AuthForm = ({ mode, onSubmit }) => {
           </label>
           <input
             id="nickname"
+            name="nickname"
             type="text"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            value={formData.nickname}
+            onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
             required
           />
@@ -61,7 +76,7 @@ const AuthForm = ({ mode, onSubmit }) => {
         type="submit"
         className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors"
       >
-        {mode === "login" ? "로그인" : "회원가입"}
+        {mode === "signup" ? "회원가입" : "로그인"}
       </button>
     </form>
   );
