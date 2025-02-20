@@ -6,8 +6,8 @@ function Login() {
   const navigate = useNavigate();
   const handleLogin = async (formData) => {
     try {
-      const { message } = await login(formData);
-      console.log(message);
+      const { nickname } = await login(formData);
+      alert(`${nickname}님 안녕하세요!`);
       navigate("/");
     } catch ({ response }) {
       alert(response.data.message);
