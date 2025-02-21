@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import { login } from "../api/auth";
+import { useQuery } from "@tanstack/react-query";
 
 function Login() {
   const navigate = useNavigate();
@@ -13,6 +14,17 @@ function Login() {
       alert(response.data.message);
     }
   };
+  // const { data, isPending, isError } = useQuery({
+  //   queryKey: ["formData"],
+  //   queryFn: login,
+  // });
+  // if (isPending) {
+  //   return <div>로딩중입니다...</div>;
+  // }
+  // if (isError) {
+  //   return <div>에러가발생했습니다.</div>;
+  // }
+  // console.log("🚀 ~ data:", data);
 
   return (
     <div className="max-w-md mx-auto px-4">

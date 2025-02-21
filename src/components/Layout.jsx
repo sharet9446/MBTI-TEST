@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 function Layout() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
@@ -24,6 +31,7 @@ function Layout() {
               <Link
                 to="/login"
                 className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
+                onClick={handleLogin}
               >
                 로그인
               </Link>

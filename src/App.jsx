@@ -8,6 +8,7 @@ import Layout from "./components/Layout";
 import Test from "./pages/Test";
 import Results from "./pages/Results";
 import TestHistory from "./pages/TestHistory";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
-          <Route path="test" element={<Test />} />
-          <Route path="results" element={<Results />} />
-          <Route path="history" element={<TestHistory />} />
-          <Route path="profile" element={<Profile />} />
+          <Route element={<ProtectedRoute isAuthenticated={false} />}>
+            <Route path="test" element={<Test />} />
+            <Route path="results" element={<Results />} />
+            <Route path="history" element={<TestHistory />} />
+            <Route path="profile" element={<Profile />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
