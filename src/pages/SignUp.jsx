@@ -4,11 +4,12 @@ import AuthForm from "../components/AuthForm";
 
 function SignUp() {
   const navigate = useNavigate();
+
   const handleSignup = async (formData) => {
     try {
       const { message } = await register(formData);
       alert(message);
-      navigate("/");
+      navigate("/login");
     } catch ({ response }) {
       alert(response.data.message);
     }

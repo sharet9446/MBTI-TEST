@@ -1,4 +1,5 @@
 import axios from "axios";
+import { produce } from "immer";
 
 const API_URL = "http://localhost:4000/testResults";
 
@@ -12,12 +13,36 @@ export const createTestResult = async (resultData) => {
   return response.data;
 };
 
-export const deleteTestResult = async (id) => {
+export const deleteTestResult = async (id, setTestHistory) => {
   const response = await axios.delete(`${API_URL}/${id}`);
+
+  setTestHistory((prev) =>
+    produce(prev, (draft) => {
+      const index = draft.findIndex((test) => test.id === id);
+      if (index !== -1) {
+        draft.splice(index, 1);
+      }
+    })
+  );
+
   return response.data;
 };
 
-export const updateTestResultVisibility = async (id, visibility) => {
-  const response = await axios.patch(`${API_URL}/${id}`, visibility);
+export const updateTestResultVisibility = async (
+  id,
+  visibility,
+  setTestHistory
+) => {
+  const response = await axios.patch(`${API_URL}/${id}`, { visibility });
+
+  setTestHistory((prev) =>
+    produce(prev, (draft) => {
+      const index = draft.findIndex((test) => test.id === id);
+      if (index !== -1) {
+        draft[index].visibility = response.data.visibility;
+      }
+    })
+  );
+
   return response.data;
 };

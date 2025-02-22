@@ -1,3 +1,36 @@
 {
-  "testResults": []
+  "testResults": [
+    {
+      "id": "cbad",
+      "nickname": "dtdt",
+      "result": "ESTJ",
+      "visibility": false,
+      "date": "2025-02-22 17:44:45",
+      "userId": "eeee"
+    },
+    {
+      "id": "ec03",
+      "nickname": "dtdt",
+      "result": "ESTJ",
+      "visibility": true,
+      "date": "2025-02-22 17:44:45",
+      "userId": "eeee"
+    },
+    {
+      "id": "649d",
+      "nickname": "난최고다",
+      "result": "ESFP",
+      "visibility": true,
+      "date": "2025-02-22 19:46:01",
+      "userId": "1234"
+    },
+    {
+      "id": "20ce",
+      "nickname": "난최고다",
+      "result": "ESFP",
+      "visibility": true,
+      "date": "2025-02-22 19:46:01",
+      "userId": "1234"
+    }
+  ]
 }

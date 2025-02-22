@@ -1,35 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
+import useAuthStore from "../store/authStore";
 import { login } from "../api/auth";
-import useBearStore from "../store/bearsStore";
-// import { useQuery } from "@tanstack/react-query";
 
 function Login() {
-  const { setIsAuthenticated, setUserData } = useBearStore();
+  const { isLogin } = useAuthStore();
   const navigate = useNavigate();
 
   const handleLogin = async (formData) => {
     try {
-      const userData = await login(formData);
-      alert(`${userData.nickname}님 안녕하세요!`);
+      const user = await login(formData);
+      alert(`${user.nickname}님 안녕하세요!`);
+      isLogin(user);
       navigate("/");
-      setIsAuthenticated(true);
-      setUserData(userData.accessToken);
     } catch ({ response }) {
       alert(response.data.message);
     }
   };
-  // const { data, isPending, isError } = useQuery({
-  //   queryKey: ["formData"],
-  //   queryFn: login,
-  // });
-  // if (isPending) {
-  //   return <div>로딩중입니다...</div>;
-  // }
-  // if (isError) {
-  //   return <div>에러가발생했습니다.</div>;
-  // }
-  // console.log("🚀 ~ data:", data);
 
   return (
     <div className="max-w-md mx-auto px-4">

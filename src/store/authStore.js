@@ -2,30 +2,31 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
-const useBearStore = create(
+const useAuthStore = create(
   persist(
     immer((set) => ({
       isAuthenticated: false,
-      token: "",
-      currentNickName: "",
+      userData: null,
 
-      setIsAuthenticated: (value) =>
+      isLogin: (userData) =>
         set((state) => {
-          state.isAuthenticated = value;
+          state.isAuthenticated = true;
+          state.userData = userData;
         }),
 
-      setUserData: (value) =>
+      isLogout: () =>
         set((state) => {
-          state.token = value;
+          state.isAuthenticated = false;
+          state.userData = null;
         }),
 
-      setCurrentNickName: (value) =>
+      updateNickName: (nickname) =>
         set((state) => {
-          state.currentNickName = value;
+          state.userData.nickname = nickname;
         }),
     })),
     { name: "Token", storage: createJSONStorage(() => sessionStorage) }
   )
 );
 
-export default useBearStore;
+export default useAuthStore;

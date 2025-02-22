@@ -1,30 +1,40 @@
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { mbtiDescriptions } from "../utils/mbtiCalculator";
+import { createTestResult } from "../api/testResults";
+import useAuthStore from "../store/authStore";
+import { formattedDate } from "../utils/dataTime";
 
 export default function Results() {
-  // TODO: 실제 결과 계산 로직 구현
+  const location = useLocation();
+  const result = location.state?.result;
+  const { userData } = useAuthStore();
 
-  const result = "INFP";
+  if (result) {
+    createTestResult({
+      nickname: userData.nickname,
+      result: result,
+      visibility: true,
+      date: formattedDate,
+      userId: userData.userId,
+    });
+  }
 
   return (
     <div className="max-w-2xl mx-auto px-4">
       <div className="bg-white p-6 rounded-lg shadow">
-        <h2 className="text-2xl font-bold mb-4 text-center">
+        <h2 className="text-3xl font-bold mb-4 text-center text-red-500">
           테스트 결과: {result}
         </h2>
-        <p className="text-gray-600 mb-6">
-          INFP: 현실에서 방황하는 시인! INFP는 세상의 아름다움과 인간의 감정에
-          대해 깊이 생각하는 사람들입니다. 이들은 항상 자신의 마음속에서 새로운
-          시나 시를 짓고 있으며, 세상의 모든 측면과 기쁨을 시적으로 표현하고
-          싶어해요. 하지만 가끔은 현실에서 너무 멀리 떨어져 있어 '지금 내가 이걸
-          왜 하고 있지?'라고 스스로에게 묻곤 합니다. 그럼에도 불구하고 이들은
-          정말 따뜻하고 이해심 많은 친구들이에요.
+        <p className="text-lg text-gray-700 mb-6">
+          {mbtiDescriptions[result] || "해당 성격 유형에 대한 설명이 없습니다."}
         </p>
         <div className="flex justify-center space-x-4">
           <Link
             to="/history"
             className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition-colors"
           >
-            결과 페이지로 이동하기
+            테스트 기록 보기
           </Link>
           <Link
             to="/"

@@ -1,10 +1,10 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import useBearStore from "../store/bearsStore";
+import useAuthStore from "../store/authStore";
 import { useEffect } from "react";
 
 function ProtectedRoute() {
   const location = useLocation();
-  const { isAuthenticated } = useBearStore();
+  const { isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,8 +13,13 @@ function ProtectedRoute() {
       navigate("/login");
     }
   }, [isAuthenticated, navigate, location]);
+
   if (!isAuthenticated) {
-    return <>로그인을 해주세요!</>;
+    return (
+      <div className="flex justify-center items-center">
+        <span className="text-[20px]">로그인을 해주세요!</span>
+      </div>
+    );
   }
 
   return <Outlet />;

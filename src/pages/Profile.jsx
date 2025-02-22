@@ -1,27 +1,28 @@
 import { useEffect, useState } from "react";
-import useBearStore from "../store/bearsStore";
+import useAuthStore from "../store/authStore";
 import { getUserProfile, updateProfile } from "../api/auth";
 
 function Profile() {
   const [nickname, setNickname] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
-  const { token, currentNickName, setCurrentNickName } = useBearStore();
+  const { userData, updateNickName } = useAuthStore();
 
   useEffect(() => {
     const fetchNickname = async () => {
-      if (!token) return;
-      const userProfile = await getUserProfile(token);
-      setCurrentNickName(userProfile.nickname);
+      if (!userData) return;
+      const userProfile = await getUserProfile(userData.accessToken);
+
+      updateNickName(userProfile.nickname);
     };
 
     fetchNickname();
-  }, [token, setCurrentNickName]);
+  }, [userData, updateNickName]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsUpdated(true);
-    updateProfile(nickname, token);
-    setCurrentNickName(nickname);
+    updateProfile(nickname, userData.accessToken);
+    updateNickName(nickname);
   };
 
   return (
@@ -39,20 +40,20 @@ function Profile() {
               htmlFor="nickname"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              현재 닉네임 : {currentNickName}
+              현재 닉네임 : {userData.nickname}
             </label>
             <input
               type="text"
               id="nickname"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
-              className="w-full p-2 border rounded focus:ring-2 focus:ring-red-500 focus:border-red-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
               placeholder="닉네임을 입력해주세요."
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 transition-colors"
+            className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors"
           >
             프로필 업데이트
           </button>
