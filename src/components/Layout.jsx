@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import useBearStore from "../store/bearsStore";
 
 function Layout() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const handleLogin = () => {
-    setIsAuthenticated(true);
+  const { isAuthenticated, setIsAuthenticated } = useBearStore();
+  const handleLogOut = () => {
+    alert("로그아웃 되었습니다.");
+    setIsAuthenticated(false);
   };
 
   return (
@@ -22,19 +22,29 @@ function Layout() {
               </Link>
             </div>
             <div className="flex items-center space-x-4">
-              <Link
-                to="/profile"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
-              >
-                프로필
-              </Link>
-              <Link
-                to="/login"
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
-                onClick={handleLogin}
-              >
-                로그인
-              </Link>
+              {isAuthenticated && (
+                <Link
+                  to="/profile"
+                  className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
+                >
+                  프로필
+                </Link>
+              )}
+              {!isAuthenticated ? (
+                <Link
+                  to="/login"
+                  className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
+                >
+                  로그인
+                </Link>
+              ) : (
+                <button
+                  className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md"
+                  onClick={handleLogOut}
+                >
+                  로그아웃
+                </button>
+              )}
             </div>
           </div>
         </nav>

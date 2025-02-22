@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <div className="max-w-4xl mx-auto px-4">
       <div className="text-center mb-12">
@@ -36,12 +37,12 @@ function Home() {
       </div>
 
       <div className="text-center mt-12">
-        <Link
-          to="/test"
+        <button
           className="inline-block bg-red-500 text-white px-8 py-3 rounded-md hover:bg-red-600 transition-colors"
+          onClick={() => navigate("/test")}
         >
           내 성격 알아보러 가기
-        </Link>
+        </button>
       </div>
     </div>
   );

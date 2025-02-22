@@ -1,15 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import { login } from "../api/auth";
-import { useQuery } from "@tanstack/react-query";
+import useBearStore from "../store/bearsStore";
+// import { useQuery } from "@tanstack/react-query";
 
 function Login() {
+  const { setIsAuthenticated, setUserData } = useBearStore();
   const navigate = useNavigate();
+
   const handleLogin = async (formData) => {
     try {
-      const { nickname } = await login(formData);
-      alert(`${nickname}님 안녕하세요!`);
+      const userData = await login(formData);
+      alert(`${userData.nickname}님 안녕하세요!`);
       navigate("/");
+      setIsAuthenticated(true);
+      setUserData(userData.accessToken);
     } catch ({ response }) {
       alert(response.data.message);
     }

@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useBearStore from "../store/bearsStore";
+import { getUserProfile, updateProfile } from "../api/auth";
 
 function Profile() {
   const [nickname, setNickname] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
+  const { token, currentNickName, setCurrentNickName } = useBearStore();
+
+  useEffect(() => {
+    const fetchNickname = async () => {
+      if (!token) return;
+      const userProfile = await getUserProfile(token);
+      setCurrentNickName(userProfile.nickname);
+    };
+
+    fetchNickname();
+  }, [token, setCurrentNickName]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsUpdated(true);
+    updateProfile(nickname, token);
+    setCurrentNickName(nickname);
   };
 
   return (
@@ -24,7 +39,7 @@ function Profile() {
               htmlFor="nickname"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              닉네임
+              현재 닉네임 : {currentNickName}
             </label>
             <input
               type="text"
