@@ -83,10 +83,18 @@
     {
       "nickname": "악!",
       "result": "ISFP",
-      "visibility": true,
+      "visibility": false,
       "date": "2025. 2. 24. 오후 4:47:36",
       "userId": "eeee",
       "id": "d13eD7g"
+    },
+    {
+      "nickname": "악!",
+      "result": "ESTJ",
+      "visibility": true,
+      "date": "2025. 2. 24. 오후 4:50:57",
+      "userId": "eeee",
+      "id": "eB79QtO"
     }
   ]
 }
