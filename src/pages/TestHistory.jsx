@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ResultsCard from "../components/ResultsCard";
+import ResultCard from "../components/ResultCard";
 
 function TestHistory() {
   return (
@@ -8,7 +8,7 @@ function TestHistory() {
         테스트 기록
       </h2>
 
-      <ResultsCard />
+      <ResultCard />
 
       <div className="mt-8 text-center">
         <Link

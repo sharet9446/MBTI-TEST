@@ -7,7 +7,7 @@ import {
 } from "../api/testResults";
 import { mbtiDescriptions } from "../utils/mbtiCalculator";
 
-const ResultsCard = () => {
+const ResultCard = () => {
   const [testHistory, setTestHistory] = useState([]);
   const { userData } = useAuthStore();
 
@@ -82,4 +82,4 @@ const ResultsCard = () => {
   );
 };
 
-export default ResultsCard;
+export default ResultCard;
