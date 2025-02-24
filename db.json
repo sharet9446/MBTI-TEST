@@ -9,14 +9,6 @@
       "userId": "eeee"
     },
     {
-      "id": "ec03",
-      "nickname": "dtdt",
-      "result": "ESTJ",
-      "visibility": true,
-      "date": "2025-02-22 17:44:45",
-      "userId": "eeee"
-    },
-    {
       "id": "649d",
       "nickname": "난최고다",
       "result": "ESFP",
@@ -39,6 +31,62 @@
       "visibility": true,
       "date": "2025-02-22 19:55:46",
       "userId": "qwerqwer"
+    },
+    {
+      "nickname": "qqqq",
+      "result": "INTJ",
+      "visibility": true,
+      "date": "2025-02-24 10:50:33",
+      "userId": "qqqq",
+      "id": "W4AThHD"
+    },
+    {
+      "nickname": "qqqq",
+      "result": "ISTJ",
+      "visibility": false,
+      "date": "2025-02-24 10:50:33",
+      "userId": "qqqq",
+      "id": "MMiJ1lF"
+    },
+    {
+      "nickname": "나는천재다",
+      "result": "ISTJ",
+      "visibility": true,
+      "date": "2025. 2. 24. 오후 2:39:45",
+      "userId": "eeee",
+      "id": "0XaIphY"
+    },
+    {
+      "nickname": "나는바보다",
+      "result": "ESTJ",
+      "visibility": true,
+      "date": "2025. 2. 24. 오후 3:50:27",
+      "userId": "eeee",
+      "id": "W-9u19P"
+    },
+    {
+      "nickname": "스피드",
+      "result": "ISFJ",
+      "visibility": true,
+      "date": "2025. 2. 24. 오후 4:19:45",
+      "userId": "speed",
+      "id": "GhjHor7"
+    },
+    {
+      "nickname": "스피드",
+      "result": "INFJ",
+      "visibility": true,
+      "date": "2025. 2. 24. 오후 4:20:12",
+      "userId": "speed",
+      "id": "bSrwT5k"
+    },
+    {
+      "nickname": "악!",
+      "result": "ISFP",
+      "visibility": true,
+      "date": "2025. 2. 24. 오후 4:47:36",
+      "userId": "eeee",
+      "id": "d13eD7g"
     }
   ]
 }

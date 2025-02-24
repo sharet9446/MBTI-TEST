@@ -29,7 +29,7 @@ function Layout() {
                     to="/history"
                     className="text-gray-700 hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium"
                   >
-                    테스트
+                    테스트 결과
                   </Link>
                   <Link
                     to="/profile"

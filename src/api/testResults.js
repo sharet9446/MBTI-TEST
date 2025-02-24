@@ -1,20 +1,18 @@
-import axios from "axios";
 import { produce } from "immer";
-
-const API_URL = "http://localhost:4000/testResults";
+import { JSONAPI } from "./axios";
 
 export const getTestResults = async () => {
-  const response = await axios.get(API_URL);
+  const response = await JSONAPI.get("/testResults");
   return response.data;
 };
 
 export const createTestResult = async (resultData) => {
-  const response = await axios.post(API_URL, resultData);
+  const response = await JSONAPI.post("/testResults", resultData);
   return response.data;
 };
 
 export const deleteTestResult = async (id, setTestHistory) => {
-  const response = await axios.delete(`${API_URL}/${id}`);
+  const response = await JSONAPI.delete(`/testResults/${id}`);
 
   setTestHistory((prev) =>
     produce(prev, (draft) => {
@@ -33,7 +31,7 @@ export const updateTestResultVisibility = async (
   visibility,
   setTestHistory
 ) => {
-  const response = await axios.patch(`${API_URL}/${id}`, { visibility });
+  const response = await JSONAPI.patch(`/testResults/${id}`, { visibility });
 
   setTestHistory((prev) =>
     produce(prev, (draft) => {

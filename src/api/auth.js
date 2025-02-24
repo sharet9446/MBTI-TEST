@@ -1,10 +1,8 @@
-import axios from "axios";
-
-const API_URL = "https://www.nbcamp-react-auth.link";
+import { AUTHAPI } from "./axios";
 
 export const register = async (userData) => {
   try {
-    const { data } = await axios.post(`${API_URL}/register`, userData);
+    const { data } = await AUTHAPI.post(`/register`, userData);
     return data;
   } catch (error) {
     console.error("Registration error:", error);
@@ -14,7 +12,7 @@ export const register = async (userData) => {
 
 export const login = async (userData) => {
   try {
-    const { data } = await axios.post(`${API_URL}/login`, userData);
+    const { data } = await AUTHAPI.post(`/login`, userData);
     return data;
   } catch (error) {
     console.error("Registration error:", error);
@@ -24,7 +22,7 @@ export const login = async (userData) => {
 
 export const getUserProfile = async (token) => {
   try {
-    const { data } = await axios.get(`${API_URL}/user`, {
+    const { data } = await AUTHAPI.get(`/user`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -41,7 +39,7 @@ export const updateProfile = async (nickname, token) => {
   try {
     const formData = new FormData();
     if (nickname) formData.append("nickname", nickname);
-    const { data } = await axios.patch(`${API_URL}/profile`, formData, {
+    const { data } = await AUTHAPI.patch(`/profile`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
