@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAuthStore from "../store/authStore";
 import {
   deleteTestResult,
@@ -6,22 +6,36 @@ import {
   updateTestResultVisibility,
 } from "../api/testResults";
 import { mbtiDescriptions } from "../utils/mbtiCalculator";
+import { useQuery } from "@tanstack/react-query";
 
 const ResultCard = () => {
   const [testHistory, setTestHistory] = useState([]);
   const { userData } = useAuthStore();
 
-  useEffect(() => {
-    const fetchTestResults = async () => {
-      const testResults = await getTestResults();
-      setTestHistory(testResults);
-    };
-    fetchTestResults();
-  }, []);
+  // useEffect(() => {
+  //   const fetchTestResults = async () => {
+  //     const testResults = await getTestResults();
+  //     setTestHistory(testResults);
+  //   };
+  //   fetchTestResults();
+  // }, []);
+
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["Result"],
+    queryFn: getTestResults,
+  });
+
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error...</div>;
+  }
 
   return (
     <div className="space-y-6">
-      {testHistory.map(
+      {data.map(
         (test) =>
           (test.visibility === true || test.userId === userData.userId) && (
             <div

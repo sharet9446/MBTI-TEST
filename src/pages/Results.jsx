@@ -4,21 +4,26 @@ import { mbtiDescriptions } from "../utils/mbtiCalculator";
 import { createTestResult } from "../api/testResults";
 import useAuthStore from "../store/authStore";
 import { formattedDate } from "../utils/dataTime";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Results() {
   const location = useLocation();
   const result = location.state?.result;
   const { userData } = useAuthStore();
 
-  if (result) {
-    createTestResult({
+  const addMutation = useMutation({
+    mutationFn: createTestResult,
+  });
+
+  const handleResultsView = () => {
+    addMutation.mutate({
       nickname: userData.nickname,
       result: result,
       visibility: true,
       date: formattedDate,
       userId: userData.userId,
     });
-  }
+  };
 
   return (
     <div className="max-w-2xl mx-auto px-4">
@@ -33,8 +38,9 @@ export default function Results() {
           <Link
             to="/history"
             className="bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-600 transition-colors"
+            onClick={handleResultsView}
           >
-            테스트 기록 보기
+            내 테스트 결과 저장하기
           </Link>
           <Link
             to="/"

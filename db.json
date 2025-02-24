@@ -1,124 +1,12 @@
 {
   "testResults": [
     {
-      "id": "cbad",
-      "nickname": "dtdt",
-      "result": "ESTJ",
-      "visibility": false,
-      "date": "2025-02-22 17:44:45",
-      "userId": "eeee"
-    },
-    {
-      "id": "649d",
-      "nickname": "난최고다",
-      "result": "ESFP",
-      "visibility": true,
-      "date": "2025-02-22 19:46:01",
-      "userId": "1234"
-    },
-    {
-      "id": "75e2",
-      "nickname": "qwer",
-      "result": "ESFP",
-      "visibility": true,
-      "date": "2025-02-22 19:55:46",
-      "userId": "ㄷㄷㄷㄷ"
-    },
-    {
-      "id": "2c72",
-      "nickname": "엄준식",
-      "result": "ISFJ",
-      "visibility": true,
-      "date": "2025-02-22 19:55:46",
-      "userId": "qwerqwer"
-    },
-    {
-      "nickname": "qqqq",
-      "result": "INTJ",
-      "visibility": true,
-      "date": "2025-02-24 10:50:33",
-      "userId": "qqqq",
-      "id": "W4AThHD"
-    },
-    {
-      "nickname": "qqqq",
-      "result": "ISTJ",
-      "visibility": false,
-      "date": "2025-02-24 10:50:33",
-      "userId": "qqqq",
-      "id": "MMiJ1lF"
-    },
-    {
-      "nickname": "나는천재다",
-      "result": "ISTJ",
-      "visibility": true,
-      "date": "2025. 2. 24. 오후 2:39:45",
-      "userId": "eeee",
-      "id": "0XaIphY"
-    },
-    {
-      "nickname": "나는바보다",
-      "result": "ESTJ",
-      "visibility": true,
-      "date": "2025. 2. 24. 오후 3:50:27",
-      "userId": "eeee",
-      "id": "W-9u19P"
-    },
-    {
-      "nickname": "스피드",
-      "result": "ISFJ",
-      "visibility": true,
-      "date": "2025. 2. 24. 오후 4:19:45",
-      "userId": "speed",
-      "id": "GhjHor7"
-    },
-    {
-      "nickname": "스피드",
+      "nickname": "악!",
       "result": "INFJ",
       "visibility": true,
-      "date": "2025. 2. 24. 오후 4:20:12",
-      "userId": "speed",
-      "id": "bSrwT5k"
-    },
-    {
-      "nickname": "악!",
-      "result": "ISFP",
-      "visibility": false,
-      "date": "2025. 2. 24. 오후 4:47:36",
+      "date": "2025. 2. 24. 오후 9:23:01",
       "userId": "eeee",
-      "id": "d13eD7g"
-    },
-    {
-      "nickname": "악!",
-      "result": "ESTJ",
-      "visibility": true,
-      "date": "2025. 2. 24. 오후 5:05:22",
-      "userId": "eeee",
-      "id": "Bk7p186"
-    },
-    {
-      "nickname": "qwer",
-      "result": "INFP",
-      "visibility": true,
-      "date": "2025. 2. 24. 오후 5:38:44",
-      "userId": "ㄷㄷㄷㄷ",
-      "id": "7DTPbQw"
-    },
-    {
-      "nickname": "qwer",
-      "result": "INFP",
-      "visibility": false,
-      "date": "2025. 2. 24. 오후 5:38:44",
-      "userId": "ㄷㄷㄷㄷ",
-      "id": "PwGfc58"
-    },
-    {
-      "nickname": "qwer",
-      "result": "INFP",
-      "visibility": false,
-      "date": "2025. 2. 24. 오후 5:38:44",
-      "userId": "ㄷㄷㄷㄷ",
-      "id": "d6k6fqD"
+      "id": 1
     }
   ]
 }

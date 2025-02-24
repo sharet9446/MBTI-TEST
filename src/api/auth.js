@@ -29,9 +29,8 @@ export const getUserProfile = async (token) => {
       },
     });
     return data;
-  } catch (error) {
-    console.error("Registration error:", error);
-    throw error;
+  } catch ({ response }) {
+    alert(response.data.message);
   }
 };
 

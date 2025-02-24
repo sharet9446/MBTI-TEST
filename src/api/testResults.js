@@ -11,18 +11,8 @@ export const createTestResult = async (resultData) => {
   return response.data;
 };
 
-export const deleteTestResult = async (id, setTestHistory) => {
+export const deleteTestResult = async (id) => {
   const response = await JSONAPI.delete(`/testResults/${id}`);
-
-  setTestHistory((prev) =>
-    produce(prev, (draft) => {
-      const index = draft.findIndex((test) => test.id === id);
-      if (index !== -1) {
-        draft.splice(index, 1);
-      }
-    })
-  );
-
   return response.data;
 };
 

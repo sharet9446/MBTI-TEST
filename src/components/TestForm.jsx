@@ -10,7 +10,6 @@ const TestForm = ({ onSubmit }) => {
       ...answers,
       { type: questions[currentQuestion].type, answer },
     ];
-
     setAnswers(newAnswers);
 
     if (currentQuestion < questions.length - 1) {
