@@ -4,15 +4,21 @@ import { mbtiDescriptions } from "../utils/mbtiCalculator";
 import { createTestResult } from "../api/testResults";
 import useAuthStore from "../store/authStore";
 import { formattedDate } from "../utils/dataTime";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function Results() {
+  const queryClient = useQueryClient();
+
   const location = useLocation();
   const result = location.state?.result;
+
   const { userData } = useAuthStore();
 
   const addMutation = useMutation({
     mutationFn: createTestResult,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["testResults"] });
+    },
   });
 
   const handleResultsView = () => {

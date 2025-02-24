@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useAuthStore from "../store/authStore";
 import {
   deleteTestResult,
@@ -6,24 +5,38 @@ import {
   updateTestResultVisibility,
 } from "../api/testResults";
 import { mbtiDescriptions } from "../utils/mbtiCalculator";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const ResultCard = () => {
-  const [testHistory, setTestHistory] = useState([]);
+  const queryClient = useQueryClient();
   const { userData } = useAuthStore();
 
-  // useEffect(() => {
-  //   const fetchTestResults = async () => {
-  //     const testResults = await getTestResults();
-  //     setTestHistory(testResults);
-  //   };
-  //   fetchTestResults();
-  // }, []);
-
   const { data, isPending, isError } = useQuery({
-    queryKey: ["Result"],
+    queryKey: ["testResults"],
     queryFn: getTestResults,
   });
+
+  const updateMutation = useMutation({
+    mutationFn: updateTestResultVisibility,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["testResults"] });
+    },
+  });
+
+  const handleUpdateVisibility = (id, visibility) => {
+    updateMutation.mutate({ id, visibility });
+  };
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteTestResult,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["testResults"] });
+    },
+  });
+
+  const handleDeleteResult = (id) => {
+    deleteMutation.mutate(id);
+  };
 
   if (isPending) {
     return <div>Loading...</div>;
@@ -60,13 +73,9 @@ const ResultCard = () => {
                     <div className="flex space-x-2 mt-2">
                       <button
                         className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-                        onClick={() => {
-                          updateTestResultVisibility(
-                            test.id,
-                            !test.visibility,
-                            setTestHistory
-                          );
-                        }}
+                        onClick={() =>
+                          handleUpdateVisibility(test.id, !test.visibility)
+                        }
                       >
                         {test.visibility ? "비공개로 전환" : "공개로 전환"}
                       </button>
@@ -75,7 +84,7 @@ const ResultCard = () => {
                         className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
                         onClick={() => {
                           if (window.confirm("정말 삭제하시겠습니까?")) {
-                            deleteTestResult(test.id, setTestHistory);
+                            handleDeleteResult(test.id);
                           }
                         }}
                       >
