@@ -16,27 +16,21 @@ const ResultCard = () => {
     queryFn: getTestResults,
   });
 
-  const updateMutation = useMutation({
-    mutationFn: updateTestResultVisibility,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["testResults"] });
-    },
-  });
-
-  const handleUpdateVisibility = (id, visibility) => {
-    updateMutation.mutate({ id, visibility });
+  const useUDMutation = (mutationFn) => {
+    return useMutation({
+      mutationFn,
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["testResults"] });
+      },
+    });
   };
 
-  const deleteMutation = useMutation({
-    mutationFn: deleteTestResult,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["testResults"] });
-    },
-  });
-
-  const handleDeleteResult = (id) => {
-    deleteMutation.mutate(id);
+  const handleUD = (UDmutation, params) => {
+    UDmutation.mutate(params);
   };
+
+  const updateMutation = useUDMutation(updateTestResultVisibility);
+  const deleteMutation = useUDMutation(deleteTestResult);
 
   if (isPending) {
     return <div>Loading...</div>;
@@ -74,7 +68,10 @@ const ResultCard = () => {
                       <button
                         className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
                         onClick={() =>
-                          handleUpdateVisibility(test.id, !test.visibility)
+                          handleUD(updateMutation, {
+                            id: test.id,
+                            visibility: !test.visibility,
+                          })
                         }
                       >
                         {test.visibility ? "비공개로 전환" : "공개로 전환"}
@@ -84,7 +81,7 @@ const ResultCard = () => {
                         className="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
                         onClick={() => {
                           if (window.confirm("정말 삭제하시겠습니까?")) {
-                            handleDeleteResult(test.id);
+                            handleUD(deleteMutation, test.id);
                           }
                         }}
                       >
