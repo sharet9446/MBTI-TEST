@@ -33,7 +33,11 @@ const ResultCard = () => {
   const deleteMutation = useUDMutation(deleteTestResult);
 
   if (isPending) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center">
+        <span className="text-[20px] animate-pulse">로딩중입니다...</span>
+      </div>
+    );
   }
 
   if (isError) {
