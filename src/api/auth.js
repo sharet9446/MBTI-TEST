@@ -1,8 +1,8 @@
-import { AUTHAPI } from "./axios";
+import { AUTH_API } from "./axios";
 
 export const register = async (userData) => {
   try {
-    const { data } = await AUTHAPI.post(`/register`, userData);
+    const { data } = await AUTH_API.post(`/register`, userData);
     return data;
   } catch (error) {
     console.error("Registration error:", error);
@@ -12,7 +12,7 @@ export const register = async (userData) => {
 
 export const login = async (userData) => {
   try {
-    const { data } = await AUTHAPI.post(`/login`, userData);
+    const { data } = await AUTH_API.post(`/login`, userData);
     return data;
   } catch (error) {
     console.error("Registration error:", error);
@@ -22,7 +22,7 @@ export const login = async (userData) => {
 
 export const getUserProfile = async (token) => {
   try {
-    const { data } = await AUTHAPI.get(`/user`, {
+    const { data } = await AUTH_API.get(`/user`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ export const updateProfile = async (nickname, token) => {
   try {
     const formData = new FormData();
     if (nickname) formData.append("nickname", nickname);
-    const { data } = await AUTHAPI.patch(`/profile`, formData, {
+    const { data } = await AUTH_API.patch(`/profile`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
