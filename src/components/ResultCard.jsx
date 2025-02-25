@@ -41,7 +41,13 @@ const ResultCard = () => {
   }
 
   if (isError) {
-    return <div>Error...</div>;
+    return (
+      <div className="flex justify-center items-center">
+        <span className="text-[20px] text-red-500 animate-pulse">
+          에러입니다...
+        </span>
+      </div>
+    );
   }
 
   return (
