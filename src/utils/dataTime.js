@@ -1,2 +1,1 @@
-const now = new Date();
-export const formattedDate = now.toLocaleString();
+export const formattedDate = new Date().toISOString();
