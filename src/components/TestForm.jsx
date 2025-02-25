@@ -10,6 +10,7 @@ const TestForm = ({ onSubmit }) => {
       ...answers,
       { type: questions[currentQuestion].type, answer },
     ];
+
     setAnswers(newAnswers);
 
     if (currentQuestion < questions.length - 1) {
@@ -19,11 +20,11 @@ const TestForm = ({ onSubmit }) => {
     }
   };
 
+  const question = questions[currentQuestion];
+
   if (currentQuestion >= questions.length) {
     return null;
   }
-
-  const question = questions[currentQuestion];
 
   return (
     <div className="space-y-6">
