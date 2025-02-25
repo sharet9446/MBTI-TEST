@@ -8,21 +8,27 @@ function Profile() {
   const { userData, updateNickName } = useAuthStore();
 
   useEffect(() => {
-    const fetchNickname = async () => {
-      if (!userData) return;
-      const userProfile = await getUserProfile(userData.accessToken);
+    if (!userData) return;
 
+    const fetchNickname = async () => {
+      const userProfile = await getUserProfile(userData.accessToken);
       updateNickName(userProfile.nickname);
     };
 
     fetchNickname();
-  }, [userData, updateNickName]);
+  }, [userData]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsUpdated(true);
-    updateProfile(nickname, userData.accessToken);
-    updateNickName(nickname);
+    setIsUpdated(false);
+
+    try {
+      await updateProfile(nickname, userData.accessToken);
+      updateNickName(nickname);
+      setIsUpdated(true);
+    } catch ({ response }) {
+      alert(response.data.message);
+    }
   };
 
   return (

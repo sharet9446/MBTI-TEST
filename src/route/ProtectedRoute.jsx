@@ -1,9 +1,8 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
 import { useEffect } from "react";
 
 function ProtectedRoute() {
-  const location = useLocation();
   const { isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
 
@@ -12,7 +11,7 @@ function ProtectedRoute() {
       alert("로그인을 해주세요!");
       navigate("/login");
     }
-  }, [isAuthenticated, navigate, location]);
+  }, [isAuthenticated, navigate]);
 
   if (!isAuthenticated) {
     return (

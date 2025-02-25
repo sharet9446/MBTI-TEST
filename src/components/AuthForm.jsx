@@ -15,6 +15,7 @@ const AuthForm = ({ mode, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
+    setFormData({ id: "", password: "", nickname: "" });
   };
 
   return (

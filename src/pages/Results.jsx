@@ -8,11 +8,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export default function Results() {
   const queryClient = useQueryClient();
-
+  const { userData } = useAuthStore();
   const location = useLocation();
   const result = location.state?.result;
-
-  const { userData } = useAuthStore();
 
   const addMutation = useMutation({
     mutationFn: createTestResult,
